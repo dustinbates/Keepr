@@ -12,10 +12,6 @@
     {
       "path": ".github/workflows",
       "name": "workflows"
-    },
-    {
-      "name": "Keepr",
-      "path": "."
     }
   ],
   "settings": {
