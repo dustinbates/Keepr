@@ -40,6 +40,12 @@ namespace Keepr.Services
       return keep;
     }
 
+    internal List<Keep> GetProfileKeeps(string id)
+    {
+      List<Keep> profileKeeps = _repo.GetProfileKeeps(id);
+      return profileKeeps;
+    }
+
     internal string Remove(int id, string userId)
     {
       Keep keep = _repo.GetKeepById(id);

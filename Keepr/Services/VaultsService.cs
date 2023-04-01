@@ -46,6 +46,16 @@ namespace Keepr.Services
         return $"The vault {vault.Name} was deleted.";
     }
 
+    internal List<Vault> GetProfileVaults(string id)
+    {
+      List<Vault> profileVaults = _repo.GetProfileVaults(id);
+      return profileVaults;
+    }
 
+    internal List<Vault> GetAccountVaults(string id)
+    {
+      List<Vault> vaults = _repo.GetAccountVaults(id);
+      return vaults;
+    }
   }
 }

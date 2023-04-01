@@ -84,5 +84,41 @@ namespace Keepr.Repositories
       int rows = _db.Execute(sql, updateData);
       return rows;
     }
+
+    internal List<Vault> GetAccountVaults(string id)
+    {
+      string sql = @"
+      SELECT
+      vault.*,
+      accounts.*
+      FROM vault
+      JOIN accounts ON vault.creatorId = accounts.id
+      WHERE vault.creatorId = @id;
+      ";
+      List<Vault> vaults = _db.Query<Vault, Account, Vault>(sql, (vault, account) => 
+      {
+        vault.Creator = account;
+        return vault;
+      }, new {id}).ToList();
+      return vaults;
+    }
+
+    internal List<Vault> GetProfileVaults(string id)
+    {
+      string sql = @"
+      SELECT
+      vault.*,
+      accounts.*
+      FROM vault
+      JOIN accounts ON vault.creatorId = accounts.id
+      WHERE vault.creatorId = @id;
+      ";
+      List<Vault> vaults = _db.Query<Vault, Account, Vault>(sql, (vault, account) => 
+      {
+        vault.Creator = account;
+        return vault;
+      }, new {id}).ToList();
+      return vaults;
+    }
   }
 }
