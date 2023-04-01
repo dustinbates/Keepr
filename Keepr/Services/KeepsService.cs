@@ -3,10 +3,12 @@ namespace Keepr.Services
   public class KeepsService
   {
     private readonly KeepsRepository _repo;
+    private readonly VaultsService _vaultsService;
     
-    public KeepsService(KeepsRepository repo)
+    public KeepsService(KeepsRepository repo, VaultsService vaultsService)
     {
         _repo = repo;
+        _vaultsService = vaultsService;
     }
     internal Keep CreateKeep(Keep keepData)
     {

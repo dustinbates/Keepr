@@ -45,9 +45,9 @@ CREATE TABLE vault(
 DROP TABLE vault;
 
 INSERT INTO vault
-(name, description, creatorId)
+(name, description, creatorId, isPrivate)
 VALUES
-("Cool Stuff", "Lots of cool in here guys", '6414d2061c38166fcc365e1d');
+("Cool Stuff", "Lots of cool in here guys", '6414d2061c38166fcc365e1d', true);
 
 -- Section VaultKeeps
 CREATE TABLE vaultKeep(

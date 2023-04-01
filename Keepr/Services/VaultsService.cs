@@ -21,16 +21,17 @@ namespace Keepr.Services
       return vaults;
     }
 
-    internal Vault GetOne(int id)
+    internal Vault GetOne(int id, string userId)
     {
       Vault vault = _repo.GetOne(id);
       if(vault == null) throw new Exception($"No vault at id: {id}");
+      if(vault.CreatorId != userId && vault.IsPrivate == true) throw new Exception("This Vault is private, shhhhhh");
       return vault;
     }
 
     internal Vault Update(Vault updateData)
     {
-      Vault original = this.GetOne(updateData.Id);
+      Vault original = this.GetOne(updateData.Id, updateData.CreatorId);
       original.Name = updateData.Name == null ? original.Name : updateData.Name;
       original.IsPrivate = updateData.IsPrivate != null ? updateData.IsPrivate : original.IsPrivate;
       _repo.Update(original);
@@ -39,7 +40,7 @@ namespace Keepr.Services
 
     internal string Remove(int id, string userId)
     {
-        Vault vault = this.GetOne(id);
+        Vault vault = this.GetOne(id, userId);
         if(vault.CreatorId != userId) throw new Exception("This is not your vault!");
         _repo.Remove(id);
         return $"The vault {vault.Name} was deleted.";
