@@ -54,7 +54,7 @@ namespace Keepr.Controllers
           try 
           {
             Account userInfo = await _auth.GetUserInfoAsync<Account>(HttpContext);
-            Vault vault = _vaultsService.GetOne(id, userInfo.Id);
+            Vault vault = _vaultsService.GetOne(id, userInfo?.Id);
             List<VaultKeepViewModel> keeps = _vaultKeepsService.GetKeeps(id);
             return Ok(keeps);
           }

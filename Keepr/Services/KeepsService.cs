@@ -19,6 +19,7 @@ namespace Keepr.Services
     internal Keep EditKeep(Keep updateData, string id)
     {
       Keep original = this.GetKeepById(updateData.Id);
+      if(original.CreatorId != id) throw new Exception("This is not your keep!");
       original.Name = updateData.Name != null ? updateData.Name : original.Name;
       original.Description = updateData.Description != null ? updateData.Description : original.Description;
       int rowsAffected = _repo.EditKeep(original);

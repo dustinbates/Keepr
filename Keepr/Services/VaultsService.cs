@@ -25,13 +25,14 @@ namespace Keepr.Services
     {
       Vault vault = _repo.GetOne(id);
       if(vault == null) throw new Exception($"No vault at id: {id}");
-      if(vault.CreatorId != userId && vault.IsPrivate == true) throw new Exception("This Vault is private, shhhhhh");
+      if(vault.IsPrivate == true && vault.CreatorId != userId) throw new Exception("This Vault is private, shhhhhh");
       return vault;
     }
 
     internal Vault Update(Vault updateData)
     {
       Vault original = this.GetOne(updateData.Id, updateData.CreatorId);
+      if(original.CreatorId != updateData.CreatorId) throw new Exception("Not your vault to edit");
       original.Name = updateData.Name == null ? original.Name : updateData.Name;
       original.IsPrivate = updateData.IsPrivate != null ? updateData.IsPrivate : original.IsPrivate;
       _repo.Update(original);
@@ -49,6 +50,7 @@ namespace Keepr.Services
     internal List<Vault> GetProfileVaults(string id)
     {
       List<Vault> profileVaults = _repo.GetProfileVaults(id);
+      
       return profileVaults;
     }
 
@@ -57,5 +59,6 @@ namespace Keepr.Services
       List<Vault> vaults = _repo.GetAccountVaults(id);
       return vaults;
     }
+
   }
 }
