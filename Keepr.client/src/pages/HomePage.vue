@@ -1,5 +1,5 @@
 <template>
-  <div class="container-fluid p-4">
+  <div class="container-fluid mt-md-5 mt-3">
     <section class="bricks">
       <div v-for="k in keeps">
         <KeepCard :keep="k" />
@@ -40,9 +40,13 @@ export default {
 .bricks {
   columns: 4 200px;
   column-gap: 1.5rem;
+  margin-right: 5rem;
+  margin-left: 5rem;
 
   @media screen and (max-width: 456px) {
-    columns: 2
+    columns: 2;
+    margin-right: .25rem;
+    margin-left: .25rem;
   }
 
   &>div {

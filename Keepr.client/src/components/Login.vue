@@ -5,14 +5,13 @@
       Login
     </button>
     <div v-else>
-      <div class="dropdown dropstart my-2 my-lg-0">
-        <div type="button" class="bg-dark border-0 selectable no-select" data-bs-toggle="dropdown"
-          aria-expanded="false">
+      <div class="dropdown m-4 my-lg-0">
+        <div type="button" class="border-0 no-select" data-bs-toggle="dropdown" aria-expanded="false">
           <div v-if="account.picture || user.picture">
-            <img :src="account.picture || user.picture" alt="account photo" height="40" class="rounded" />
+            <img :src="account.picture || user.picture" alt="account photo" height="70" class="rounded-pill selectable" />
           </div>
         </div>
-        <div class="dropdown-menu dropdown-menu-lg-left p-0" aria-labelledby="authDropdown">
+        <div class="dropdown-menu dropdown-menu-end p-0" aria-labelledby="authDropdown">
           <div class="list-group">
             <router-link :to="{ name: 'Account' }">
               <div class="list-group-item dropdown-item list-group-item-action">
@@ -50,5 +49,4 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
-</style>
+<style lang="scss" scoped></style>
