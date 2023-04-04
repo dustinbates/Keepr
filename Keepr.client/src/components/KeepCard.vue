@@ -3,7 +3,9 @@
     <img @click="setActiveKeep(keep.id)" data-bs-toggle="modal" data-bs-target="#activeKeep"
       class="keepImg img-fluid rounded" :src="keep.img" :alt="keep.name">
     <p class="overlay">{{ keep.name }}</p>
-    <img class="creatorImg overlayBottomRight" :src="keep.creator.picture" :alt="keep.creator.name">
+    <router-link :to="{ name: 'Profile', params: { profileId: keep.creator.id } }">
+      <img class="creatorImg overlayBottomRight" :src="keep.creator.picture" :alt="keep.creator.name">
+    </router-link>
   </div>
 </template>
 

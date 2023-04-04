@@ -9,19 +9,29 @@
       <KeepCard :keep="k" />
     </div>
   </section>
+  <Modal id="activeKeep">
+    <ActiveKeep />
+  </Modal>
+  <Modal id="createKeep">
+    <CreateKeepForm />
+  </Modal>
+  <Modal id="createVault">
+    <CreateVaultForm />
+  </Modal>
 </template>
 
 <script>
-import { computed, onMounted } from 'vue'
+import { computed, onMounted, watchEffect } from 'vue'
 import { AppState } from '../AppState'
-import { Account } from '../models/Account'
-import { accountService } from '../services/AccountService'
 import { keepsService } from '../services/KeepsService'
 import { logger } from '../utils/Logger'
 import Pop from '../utils/Pop'
 export default {
   setup() {
     onMounted(() => {
+      getKeeps()
+    })
+    watchEffect(() => {
       getKeeps()
     })
     async function getKeeps() {
