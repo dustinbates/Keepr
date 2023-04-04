@@ -10,7 +10,7 @@
           </span>
           <form class="row" @submit.prevent="createVault">
             <div class="mb-3">
-              <input type="text" class="form-control" required v-model="editable.name" name="name" id=""
+              <input type="text" class="form-control" required v-model="editable.name" maxlength="25" name="name" id=""
                 aria-describedby="helpId" placeholder="Title...">
             </div>
             <div class="mb-3">
@@ -18,8 +18,8 @@
                 aria-describedby="helpId" placeholder="Image URL...">
             </div>
             <div class="mb-3">
-              <input type="text" class="form-control mb-5" required v-model="editable.description" name="description"
-                id="" aria-describedby="helpId" placeholder="Description...">
+              <input type="text" class="form-control mb-5" required v-model="editable.description" maxlength="300"
+                name="description" id="" aria-describedby="helpId" placeholder="Description...">
             </div>
             <div class="d-flex justify-content-end align-items-center">
               <input type="checkbox" class="checkbox me-2" v-model="editable.isPrivate" name="isPrivate" id="checkbox"

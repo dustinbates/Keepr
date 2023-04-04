@@ -10,7 +10,7 @@
           </span>
           <form class="row" @submit.prevent="createKeep">
             <div class="mb-3">
-              <input type="text" class="form-control" required v-model="editable.name" name="name" id=""
+              <input type="text" class="form-control" required v-model="editable.name" maxlength="30" name="name" id=""
                 aria-describedby="helpId" placeholder="Title...">
             </div>
             <div class="mb-3">
@@ -18,8 +18,8 @@
                 aria-describedby="helpId" placeholder="Image URL...">
             </div>
             <div class="mb-3">
-              <input type="text" class="form-control mt-5" required v-model="editable.description" name="description"
-                id="" aria-describedby="helpId" placeholder="Keep Description...">
+              <input type="text" class="form-control mt-5" required v-model="editable.description" maxlength="300"
+                name="description" id="" aria-describedby="helpId" placeholder="Keep Description...">
             </div>
             <div class="text-end">
               <button type="submit" class="btn btn-dark" data-bs-dismiss="modal">Create</button>

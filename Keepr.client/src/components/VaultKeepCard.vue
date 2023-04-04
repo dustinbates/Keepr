@@ -3,7 +3,9 @@
     <img @click="setActiveKeep(vaultKeep.id)" data-bs-toggle="modal" data-bs-target="#activeKeep"
       class="keepImg img-fluid rounded" :src="vaultKeep.img" :alt="vaultKeep.name">
     <p class="overlay">{{ vaultKeep.name }}</p>
-    <img class="creatorImg overlayBottomRight" :src="vaultKeep.creator.picture" :alt="vaultKeep.creator.name">
+    <router-link :to="{ name: 'Profile', params: { profileId: vaultKeep.creator.id } }">
+      <img class="creatorImg overlayBottomRight" :src="vaultKeep.creator.picture" :alt="vaultKeep.creator.name">
+    </router-link>
   </div>
 </template>
 

@@ -1,9 +1,12 @@
 <template>
   <div class="container-fluid p-3">
-    <div class="row header mb-5 justify-content-center">
+    <section class="header d-flex justify-content-center">
       <img class="vaultImg" :src="vault.img" :alt="vault.name">
-      <p class="overlay text-center">{{ vault.name }}</p>
-    </div>
+      <p class="overlay text-center">{{ vault.name }} <br> by {{ vault.creator.name }}</p>
+    </section>
+    <section class="d-flex justify-content-center">
+      <p class="fs-1 m-0  mb-5 p-0">{{ vaultKeeps.length }} Keeps</p>
+    </section>
     <section class="bricks">
       <div v-for="vk in vaultKeeps">
         <VaultKeepCard :vaultKeep="vk" />
@@ -88,7 +91,7 @@ export default {
   position: absolute;
   bottom: 0;
   color: whitesmoke;
-  font-size: 90px;
+  font-size: 50px;
   font-family: 'Times New Roman', Times, serif;
   text-shadow: 2px 2px 4px black;
 }

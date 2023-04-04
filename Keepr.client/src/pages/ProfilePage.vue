@@ -1,23 +1,29 @@
 <template>
-  <div class="about text-center">
-    <h1>Welcome {{ profile.name }}</h1>
-    <img class="rounded" :src="profile.picture" alt="" />
-    <p>{{ profile.email }}</p>
-  </div>
-  <section class="bricks">
-    <div v-for="k in keeps">
-      <KeepCard :keep="k" />
+  <div class="container-fluid">
+    <div class="row p-md-5 ms-md-3">
+      <h1>Vaults</h1>
+      <div v-for="v in vaults" class="col-6 col-md-3 mb-4">
+        <VaultCard :vault="v" />
+      </div>
     </div>
-  </section>
-  <Modal id="activeKeep">
-    <ActiveKeep />
-  </Modal>
-  <Modal id="createKeep">
-    <CreateKeepForm />
-  </Modal>
-  <Modal id="createVault">
-    <CreateVaultForm />
-  </Modal>
+    <div class="row px-5 ms-3">
+      <h1>Keeps</h1>
+    </div>
+    <div class="bricks">
+      <div v-for="k in keeps">
+        <KeepCard :keep="k" />
+      </div>
+    </div>
+    <Modal id="activeKeep">
+      <ActiveKeep />
+    </Modal>
+    <Modal id="createKeep">
+      <CreateKeepForm />
+    </Modal>
+    <Modal id="createVault">
+      <CreateVaultForm />
+    </Modal>
+  </div>
 </template>
 
 <script>
@@ -28,6 +34,7 @@ import { profilesService } from '../services/ProfilesService'
 import { logger } from '../utils/Logger'
 import Pop from '../utils/Pop'
 import { useRoute, useRouter } from 'vue-router';
+import { vaultsService } from '../services/VaultsService'
 
 export default {
   setup() {
@@ -38,6 +45,7 @@ export default {
     })
     watchEffect(() => {
       getKeeps();
+      getVaults();
     })
     async function getProfileById() {
       try {
@@ -57,9 +65,19 @@ export default {
         Pop.error(error)
       }
     }
+    async function getVaults() {
+      try {
+        const id = AppState.profile.id
+        await vaultsService.getProfileVaults(id)
+      } catch (error) {
+        logger.error(error)
+        Pop.error(error.message)
+      }
+    }
     return {
       profile: computed(() => AppState.profile),
       keeps: computed(() => AppState.profileKeeps),
+      vaults: computed(() => AppState.profileVaults),
     }
   }
 }
