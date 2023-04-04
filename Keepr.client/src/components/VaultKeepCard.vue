@@ -1,9 +1,9 @@
 <template>
   <div class="keepCard bg-white rounded">
-    <img @click="setActiveKeep(keep.id)" data-bs-toggle="modal" data-bs-target="#activeKeep"
-      class="keepImg img-fluid rounded" :src="keep.img" :alt="keep.name">
-    <p class="overlay">{{ keep.name }}</p>
-    <img class="creatorImg overlayBottomRight" :src="keep.creator.picture" :alt="keep.creator.name">
+    <img @click="setActiveKeep(vaultKeep.id)" data-bs-toggle="modal" data-bs-target="#activeKeep"
+      class="keepImg img-fluid rounded" :src="vaultKeep.img" :alt="vaultKeep.name">
+    <p class="overlay">{{ vaultKeep.name }}</p>
+    <img class="creatorImg overlayBottomRight" :src="vaultKeep.creator.picture" :alt="vaultKeep.creator.name">
   </div>
 </template>
 
@@ -14,19 +14,18 @@ import { keepsService } from '../services/KeepsService';
 import { computed } from 'vue';
 
 export default {
-  props: { keep: { type: Object, required: true } },
+  props: { vaultKeep: { type: Object, required: true } },
   setup() {
     return {
-      keeps: computed(() => AppState.keeps),
+      vaultKeeps: computed(() => AppState.vaultKeeps),
       activeKeep: computed(() => AppState.activeKeep),
-      setActiveKeep(keepId) {
-        keepsService.setActiveKeep(keepId)
+      setActiveKeep(vaultKeepId) {
+        keepsService.setActiveKeep(vaultKeepId)
       }
     }
   }
 }
 </script>
-
 
 <style lang="scss" scoped>
 .keepCard {

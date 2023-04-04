@@ -5,6 +5,15 @@
         <KeepCard :keep="k" />
       </div>
     </section>
+    <Modal id="activeKeep">
+      <ActiveKeep />
+    </Modal>
+    <Modal id="createKeep">
+      <CreateKeepForm />
+    </Modal>
+    <Modal id="createVault">
+      <CreateVaultForm />
+    </Modal>
   </div>
 </template>
 

@@ -1,0 +1,77 @@
+<template>
+  <div class="modal fade" id="createVault" data-bs-backdrop="static" tabindex="-1" data-bs-keyboard="false" role="dialog"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-md" role="document">
+      <div class="modal-content">
+        <div class="container-fluid bg-light p-4">
+          <span class="d-flex justify-content-between">
+            <h2 class="mb-3">Add your vault</h2>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </span>
+          <form class="row" @submit.prevent="createVault">
+            <div class="mb-3">
+              <input type="text" class="form-control" required v-model="editable.name" name="name" id=""
+                aria-describedby="helpId" placeholder="Title...">
+            </div>
+            <div class="mb-3">
+              <input type="text" class="form-control" required v-model="editable.img" name="img" id=""
+                aria-describedby="helpId" placeholder="Image URL...">
+            </div>
+            <div class="mb-3">
+              <input type="text" class="form-control mb-5" required v-model="editable.description" name="description"
+                id="" aria-describedby="helpId" placeholder="Description...">
+            </div>
+            <div class="d-flex justify-content-end align-items-center">
+              <input type="checkbox" class="checkbox me-2" v-model="editable.isPrivate" name="isPrivate" id="checkbox"
+                aria-describedBy="helpId">
+              <p class="m-0">Make Vault Private?</p>
+            </div>
+            <div class="text-end">
+              <button type="submit" class="btn btn-dark" data-bs-dismiss="modal">Create</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+
+<script>
+import { ref } from 'vue';
+import { router } from '../router';
+import { logger } from '../utils/Logger';
+import Pop from '../utils/Pop';
+import { vaultsService } from '../services/VaultsService.js'
+
+export default {
+  setup() {
+    const editable = ref({})
+    return {
+      editable,
+      async createVault() {
+        try {
+          const vaultData = editable.value
+          const vault = await vaultsService.createVault(vaultData)
+          editable.value = {}
+        } catch (error) {
+          logger.error(error)
+          Pop.error(error.message)
+        }
+      }
+    }
+  }
+}
+</script>
+
+
+<style lang="scss" scoped>
+input {
+  padding: 0 !important;
+  background: none;
+  height: 2em;
+  border: none;
+  border-bottom: 1px solid black;
+  border-radius: 0 !important;
+}
+</style>

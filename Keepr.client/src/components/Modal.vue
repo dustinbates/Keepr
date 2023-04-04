@@ -1,17 +1,10 @@
 <template>
-  <div class="component">
-
-
-  </div>
+  <slot>Insert Modal info here</slot>
 </template>
 
 
-<script>
-export default {
-  setup() {
-    return {}
-  }
-}
+<script setup>
+
 </script>
 
 

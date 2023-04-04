@@ -30,6 +30,8 @@ INSERT INTO keep
 VALUES
 ("Dog", "It's just a dog", 'https://hips.hearstapps.com/hmg-prod/images/golden-retriever-royalty-free-image-506756303-1560962726.jpg?crop=1.00xw:0.756xh;0,0.0756xh&resize=1200:*', '6414d2061c38166fcc365e1d');
 
+DELETE FROM keep WHERE id = 23;
+
 -- Section Vaults
 CREATE TABLE vault(
   id INT NOT NULL AUTO_INCREMENT PRIMARY KEY COMMENT 'primary key',
@@ -43,6 +45,7 @@ CREATE TABLE vault(
 ) default charset utf8 COMMENT '';
 
 DROP TABLE vault;
+
 
 INSERT INTO vault
 (name, description, creatorId, isPrivate)

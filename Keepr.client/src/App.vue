@@ -6,13 +6,14 @@
           <router-link class="navbar-brand d-flex" :to="{ name: 'Home' }">
             <p class="home ms-3 fs-3"> Home </p>
           </router-link>
-          <div class="dropdown">
+          <div v-if="account.id" class="dropdown">
             <div class="dropdown-toggle m-0 p-0 fs-3" type="button" data-bs-toggle="dropdown" aria-expanded="false">
               Create
             </div>
             <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="#">New Keep</a></li>
-              <li><a class="dropdown-item" href="#">New Vault</a></li>
+              <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#createKeep">New Keep</a></li>
+              <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#createVault">New Vault</a>
+              </li>
             </ul>
           </div>
         </div>
@@ -41,6 +42,7 @@ import Navbar from './components/Navbar.vue'
 export default {
   setup() {
     return {
+      account: computed(() => AppState.account),
       appState: computed(() => AppState)
     }
   },
