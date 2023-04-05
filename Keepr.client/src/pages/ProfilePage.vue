@@ -6,7 +6,7 @@
         <VaultCard :vault="v" />
       </div>
     </div>
-    <div class="row px-5 ms-3">
+    <div class="row px-md-5 ms-md-3">
       <h1>Keeps</h1>
     </div>
     <div class="bricks">

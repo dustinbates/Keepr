@@ -1,14 +1,14 @@
 <template>
   <div class="container-fluid p-3">
-    <section class="header d-flex justify-content-center">
+    <div class="header d-flex justify-content-center">
       <img class="vaultImg" :src="vault.img" :alt="vault.name">
       <p class="overlay text-center">{{ vault.name }} <br> by {{ vault.creator.name }}</p>
-    </section>
+    </div>
     <section class="d-flex justify-content-center">
       <p class="fs-1 m-0  mb-5 p-0">{{ vaultKeeps.length }} Keeps</p>
     </section>
     <section class="bricks">
-      <div v-for="vk in vaultKeeps">
+      <div v-for="vk in vaultKeeps" class="delete fs-3">
         <VaultKeepCard :vaultKeep="vk" />
       </div>
     </section>
@@ -67,6 +67,7 @@ export default {
     })
     return {
       route,
+      account: computed(() => AppState.account),
       vault: computed(() => AppState.activeVault),
       vaultKeeps: computed(() => AppState.vaultKeeps)
     }
@@ -94,6 +95,9 @@ export default {
   font-size: 50px;
   font-family: 'Times New Roman', Times, serif;
   text-shadow: 2px 2px 4px black;
+  width: 50%;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .bricks {

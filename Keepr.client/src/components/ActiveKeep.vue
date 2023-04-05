@@ -23,7 +23,7 @@
             </div>
             <div class="row align-items-center">
               <div class="col-6">
-                <div class="dropdown dropup ">
+                <div v-if="account.id" class="dropdown dropup ">
                   <button type="button" class="btn btn-dark dropdown-toggle" data-bs-toggle="dropdown"
                     aria-expanded="false" @click="getMyVaults">
                     Add to Vault

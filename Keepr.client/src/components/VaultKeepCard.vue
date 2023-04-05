@@ -19,6 +19,8 @@ export default {
   props: { vaultKeep: { type: Object, required: true } },
   setup() {
     return {
+      account: computed(() => AppState.account),
+      vault: computed(() => AppState.vaults),
       vaultKeeps: computed(() => AppState.vaultKeeps),
       activeKeep: computed(() => AppState.activeKeep),
       setActiveKeep(vaultKeepId) {
@@ -54,6 +56,8 @@ export default {
   color: rgb(240, 234, 244);
   text-shadow: 1px 1px 2px rgb(0, 0, 0);
   width: 50%;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .overlayBottomRight {
@@ -61,6 +65,15 @@ export default {
   text-align: end;
   margin: .5em;
   bottom: 0;
+  right: 0;
+  box-shadow: 1px 1px 5px rgb(0, 0, 0);
+}
+
+.overlayTopRight {
+  position: absolute;
+  text-align: end;
+  margin: .5em;
+  top: 0;
   right: 0;
   box-shadow: 1px 1px 5px rgb(0, 0, 0);
 }

@@ -16,13 +16,20 @@ class KeepsService {
     AppState.profileKeeps = res.data
   }
 
-  setActiveKeep(keepId){
-    AppState.activeKeep = AppState.keeps.find(k => k.id == keepId)
+  async setActiveKeep(keepId){
+    const res = await api.get(`api/keeps/${keepId}`)
+    AppState.activeKeep = res.data
   }
 
   async createKeep(keepData){
     const res = await api.post('api/keeps', keepData)
     AppState.keeps.push(res.data)
+  }
+
+  async deleteKeep(keepId){
+    const res = await api.delete(`api/keeps/${keepId}`)
+    let deleteIndex = AppState.keeps.findIndex(k => k.id == keepId)
+    AppState.keeps.splice(deleteIndex, 1)
   }
 
 

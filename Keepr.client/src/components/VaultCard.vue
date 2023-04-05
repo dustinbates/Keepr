@@ -48,5 +48,7 @@ export default {
   color: rgb(240, 234, 244);
   text-shadow: 1px 1px 2px rgb(0, 0, 0);
   width: 50%;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 </style>
