@@ -1,6 +1,6 @@
 <template>
   <div class="keepCard bg-white rounded">
-    <img @click="setActiveKeep(vaultKeep.id)" data-bs-toggle="modal" data-bs-target="#activeKeep"
+    <img @click="setActiveKeep(vaultKeep)" data-bs-toggle="modal" data-bs-target="#activeKeep"
       class="keepImg img-fluid rounded" :src="vaultKeep.img" :alt="vaultKeep.name">
     <p class="overlay">{{ vaultKeep.name }}</p>
     <router-link :to="{ name: 'Profile', params: { profileId: vaultKeep.creator.id } }">
@@ -23,8 +23,8 @@ export default {
       vault: computed(() => AppState.vaults),
       vaultKeeps: computed(() => AppState.vaultKeeps),
       activeKeep: computed(() => AppState.activeKeep),
-      setActiveKeep(vaultKeepId) {
-        keepsService.setActiveKeep(vaultKeepId)
+      setActiveKeep(vaultKeep) {
+        keepsService.setActiveKeep(vaultKeep)
       }
     }
   }

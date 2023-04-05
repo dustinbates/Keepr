@@ -23,7 +23,12 @@
             </div>
             <div class="row align-items-center">
               <div class="col-6">
-                <div v-if="account.id" class="dropdown dropup ">
+                <div v-if="activeKeep?.vaultKeepId && activeVault.creatorId == account.id">
+                  <button class="btn btn-outline-secondary" @click="deleteVaultKeep(activeKeep?.vaultKeepId)">
+                    Remove <i class="mdi mdi-cancel"></i>
+                  </button>
+                </div>
+                <div v-else-if="account.id" class="dropdown dropup ">
                   <button type="button" class="btn btn-dark dropdown-toggle" data-bs-toggle="dropdown"
                     aria-expanded="false" @click="getMyVaults">
                     Add to Vault
@@ -37,9 +42,9 @@
                 </div>
               </div>
               <div class="col-6">
-                <div class="d-flex align-items-center justify-content-around">
-                  <img class="creatorImg me-2" :src="activeKeep?.creator.picture" :alt="activeKeep?.creator.name">
-                  <p class="m-0 p-0">{{ activeKeep?.creator.name }}</p>
+                <div class="d-flex align-items-center justify-content-evenly">
+                  <img class="creatorImg" :src="activeKeep?.creator.picture" :alt="activeKeep?.creator.name">
+                  <p class="fs-4 m-0 p-0">{{ activeKeep?.creator.name }}</p>
                 </div>
               </div>
             </div>
@@ -65,6 +70,7 @@ export default {
       activeKeep: computed(() => AppState.activeKeep),
       keep: computed(() => AppState.keeps),
       myVaults: computed(() => AppState.myVaults),
+      activeVault: computed(() => AppState.activeVault),
       async getMyVaults() {
         try {
           await accountService.getMyVaults()
@@ -80,6 +86,16 @@ export default {
           logger.log(keepId, vaultId)
           const vaultKeepData = { keepId: keepId, vaultId: vaultId }
           await vaultKeepsService.createVaultKeep(vaultKeepData)
+        } catch (error) {
+          logger.error(error)
+          Pop.error(error.message)
+        }
+      },
+      async deleteVaultKeep(vaultKeepId) {
+        try {
+          if (await Pop.confirm('Delete this Keep?', "Are you sure you want to delete this Keep?", 'Delete', 'question')) {
+            vaultKeepsService.deleteVaultKeep(vaultKeepId)
+          }
         } catch (error) {
           logger.error(error)
           Pop.error(error.message)

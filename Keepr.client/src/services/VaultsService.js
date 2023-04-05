@@ -25,6 +25,12 @@ class VaultsService {
     const res = await api.post('api/vaults', vaultData)
     AppState.vaults.push(res.data)
   }
+
+  async deleteVault(vaultId){
+    const res = await api.delete(`api/vaults/${vaultId}`)
+    let deleteIndex = AppState.vaults.findIndex(v => v.id == vaultId)
+    AppState.vaults.splice(deleteIndex, 1)
+  }
 }
 
 export const vaultsService = new VaultsService()

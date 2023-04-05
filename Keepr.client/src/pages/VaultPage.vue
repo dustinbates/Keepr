@@ -1,11 +1,20 @@
 <template>
   <div class="container-fluid p-3">
     <div class="header d-flex justify-content-center">
+      <div v-if="account.id == vault.creator.id" type="button" class="overlayTopRight" data-bs-toggle="dropdown"
+        aria-expanded="false">
+        <i class="fs-1 mdi mdi-dots-horizontal" title="Vault Options"></i>
+      </div>
+      <div class="dropdown-menu text-center fs-1">
+        <div class="d-flex justify-content-evenly">
+          <i class="mdi mdi-delete-outline fs-1 text-danger" title="delete vault" @click="deleteVault(vault.id)"></i>
+        </div>
+      </div>
       <img class="vaultImg" :src="vault.img" :alt="vault.name">
-      <p class="overlay text-center">{{ vault.name }} <br> by {{ vault.creator.name }}</p>
+      <p class="overlay mb-0 text-center">{{ vault.name }} <br> by {{ vault.creator.name }}</p>
     </div>
     <section class="d-flex justify-content-center">
-      <p class="fs-1 m-0  mb-5 p-0">{{ vaultKeeps.length }} Keeps</p>
+      <p class="fs-1 m-0 mb-5 me-5 p-0">{{ vaultKeeps.length }} Keeps</p>
     </section>
     <section class="bricks">
       <div v-for="vk in vaultKeeps" class="delete fs-3">
@@ -69,7 +78,18 @@ export default {
       route,
       account: computed(() => AppState.account),
       vault: computed(() => AppState.activeVault),
-      vaultKeeps: computed(() => AppState.vaultKeeps)
+      vaultKeeps: computed(() => AppState.vaultKeeps),
+
+      async deleteVault(vaultId) {
+        try {
+          if (await Pop.confirm('Delete this Vault?', "Are you sure you want to delete this Vault? You won't be able to revert this.", 'Delete', 'question')) {
+            vaultsService.deleteVault(vaultId)
+          }
+        } catch (error) {
+          logger.error(error)
+          Pop.error(error.message)
+        }
+      }
     }
   }
 }
@@ -98,6 +118,15 @@ export default {
   width: 50%;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+.overlayTopRight {
+  position: absolute;
+  top: 0;
+  right: 0;
+  color: white;
+  text-shadow: 1px 1px 2px black;
+  width: 30%;
 }
 
 .bricks {

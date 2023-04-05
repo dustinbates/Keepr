@@ -1,8 +1,8 @@
 <template>
-  <div class="about text-center margin">
-    <h1>Welcome, {{ account.name }}</h1>
-    <img class="rounded" :src="account.picture" alt="" />
-    <p>{{ account.email }}</p>
+  <div class="mt-3 text-center">
+    <h1>Wanting to make a change, {{ account.name }}?</h1>
+    <img class="coverImg" :src="account.coverImg" :alt="account.name"> <br>
+    <img class="profilePic" :src="account.picture" :alt="account.name" />
   </div>
   <div class="container-fluid">
     <div class="row">
@@ -59,8 +59,17 @@ export default {
 </script>
 
 <style scoped>
-img {
-  max-width: 100px;
+.coverImg {
+  height: 40vh;
+  width: 65%;
+  transform: translateY(40px);
+}
+
+.profilePic {
+  max-width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  transform: translateY(-40px);
 }
 
 .margin {

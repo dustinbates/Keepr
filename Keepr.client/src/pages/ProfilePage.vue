@@ -6,6 +6,9 @@
         <br>
         <img class="profilePic" :src="profile.picture" alt="">
       </div>
+      <div class="col-12 text-center">
+        <p class="stats m-0 p-0 fs-2">{{ vaults.length }} Vaults | {{ keeps.length }} Keeps</p>
+      </div>
     </div>
     <div class="row px-md-5 ms-md-3">
       <h1>Vaults</h1>
@@ -105,6 +108,10 @@ export default {
   padding: 0;
   border-radius: 50%;
   transform: translateY(-40px);
+}
+
+.stats {
+  transform: translateY(-30px);
 }
 
 .bricks {
