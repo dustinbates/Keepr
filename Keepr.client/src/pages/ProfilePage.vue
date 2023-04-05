@@ -1,6 +1,13 @@
 <template>
   <div class="container-fluid">
-    <div class="row p-md-5 ms-md-3">
+    <div class="row justify-content-center">
+      <div class="col-12 text-center">
+        <img class="profileHeader" :src="profile.coverImg" alt="">
+        <br>
+        <img class="profilePic" :src="profile.picture" alt="">
+      </div>
+    </div>
+    <div class="row px-md-5 ms-md-3">
       <h1>Vaults</h1>
       <div v-for="v in vaults" class="col-6 col-md-3 mb-4">
         <VaultCard :vault="v" />
@@ -84,8 +91,20 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-img {
-  max-width: 100px;
+.profileHeader {
+  height: 40vh;
+  width: 90%;
+  object-fit: cover;
+  border-radius: 30px;
+  transform: translateY(40px);
+}
+
+.profilePic {
+  height: 150px;
+  width: 150px;
+  padding: 0;
+  border-radius: 50%;
+  transform: translateY(-40px);
 }
 
 .bricks {

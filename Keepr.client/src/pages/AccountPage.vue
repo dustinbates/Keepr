@@ -1,5 +1,12 @@
 <template>
   <div class="container-fluid">
+    <div class="row">
+      <div class="col-12 text-end">
+        <router-link :to="{ name: 'Edit Account' }">
+          <i class="mdi mdi-pencil fs-3"></i>
+        </router-link>
+      </div>
+    </div>
     <div class="row m-md-5">
       <h1>Vaults</h1>
       <div v-for="v in myVaults" class="col-6 col-md-3 mb-4">

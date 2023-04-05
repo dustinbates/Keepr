@@ -10,6 +10,9 @@ CREATE TABLE IF NOT EXISTS accounts(
 
 DROP TABLE accounts;
 
+ALTER TABLE accounts
+ADD COLUMN coverImg VARCHAR(500);
+
 
 -- Section Keeps
 CREATE TABLE keep(
