@@ -28,7 +28,8 @@ namespace Keepr.Repositories
       UPDATE keep
       SET
       name = @name,
-      description = @description
+      description = @description,
+      views = @views
       WHERE id = @id;
       ";
       int rows = _db.Execute(sql, original);

@@ -18,10 +18,11 @@ namespace Keepr.Services
 
     internal Keep EditKeep(Keep updateData, string id)
     {
-      Keep original = this.GetKeepById(updateData.Id);
+      Keep original = this.GetKeepById(updateData.Id, updateData.CreatorId);
       if(original.CreatorId != id) throw new Exception("This is not your keep!");
       original.Name = updateData.Name != null ? updateData.Name : original.Name;
       original.Description = updateData.Description != null ? updateData.Description : original.Description;
+      original.Views = updateData.Views > 0 ? updateData.Views : original.Views;
       int rowsAffected = _repo.EditKeep(original);
       if(rowsAffected == 0) throw new Exception("Could not edit this Keep");
       if(rowsAffected > 1) throw new Exception("Something broke man, check the code or something");
@@ -34,10 +35,14 @@ namespace Keepr.Services
      return keeps;
     }
 
-    internal Keep GetKeepById(int id)
+    internal Keep GetKeepById(int id, string userId)
     {
       Keep keep = _repo.GetKeepById(id);
       if(keep == null) throw new Exception("No keep found");
+      {if(keep.CreatorId != userId)
+        keep.Views++;
+        _repo.EditKeep(keep);
+      }
       return keep;
     }
 

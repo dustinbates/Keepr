@@ -17,7 +17,11 @@ class KeepsService {
   }
 
   async setActiveKeep(keep){
-    // const res = await api.get(`api/keeps/${keep.id}`)
+    const res = await api.get(`api/keeps/${keep.id}`)
+    const creatorId = AppState.account.id
+    if(keep.creatorId != creatorId){
+      keep.views++
+    }
     AppState.activeKeep = keep
   }
 
