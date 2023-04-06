@@ -1,5 +1,6 @@
 import { AppState } from "../AppState"
 import { logger } from "../utils/Logger"
+import Pop from "../utils/Pop"
 import { api } from "./AxiosService"
 
 class VaultsService {
@@ -23,11 +24,13 @@ class VaultsService {
   }
   async createVault(vaultData){
     const res = await api.post('api/vaults', vaultData)
+    Pop.toast("Created Vault!", 'success')
     AppState.vaults.push(res.data)
   }
 
   async deleteVault(vaultId){
     const res = await api.delete(`api/vaults/${vaultId}`)
+    Pop.toast("Deleted Vault!", 'success')
     let deleteIndex = AppState.vaults.findIndex(v => v.id == vaultId)
     AppState.vaults.splice(deleteIndex, 1)
   }

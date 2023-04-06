@@ -58,6 +58,7 @@ export default {
 }
 
 .keepImg {
+  width: 100%;
   box-shadow: 0px 6px 5px rgba(0, 0, 0, 0.478);
 }
 

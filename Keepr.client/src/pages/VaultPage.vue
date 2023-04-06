@@ -82,8 +82,8 @@ export default {
       async deleteVault(vaultId) {
         try {
           if (await Pop.confirm('Delete this Vault?', "Are you sure you want to delete this Vault? You won't be able to revert this.", 'Delete', 'question')) {
-            vaultsService.deleteVault(vaultId)
-            // FIXME router push the user away here
+            await vaultsService.deleteVault(vaultId)
+            router.push({ name: 'Account' })
           }
         } catch (error) {
           logger.error(error)

@@ -4,11 +4,11 @@
       <div class="modal-content">
         <div class="row">
           <div class="col-12 col-md-6">
-            <img :src="activeKeep?.img" :alt="activeKeep?.name">
+            <img class="keepImg" :src="activeKeep?.img" :alt="activeKeep?.name">
           </div>
           <div class="col-12 col-md-6 px-5 py-3 d-flex flex-column justify-content-evenly">
             <div class="row">
-              <div class="col-12">
+              <div class="col-12 details">
                 <p class="fs-2 m-0 p-0 text-center">
                   <i class="mdi mdi-eye-outline" title="View count"></i> {{ activeKeep?.views }}
                   <i class="ms-5 mdi mdi-alpha-k-box-outline" title="Kept count"></i> {{ activeKeep?.kept }}
@@ -121,5 +121,15 @@ img {
   height: 40px;
   width: 40px;
   border-radius: 50%;
+}
+
+
+.modal-dialog {
+  overflow-y: initial !important
+}
+
+.modal-content {
+  height: 80vh;
+  overflow-y: auto;
 }
 </style>
