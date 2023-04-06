@@ -4,11 +4,6 @@
       <div v-if="account.id == vault.creator.id" type="button" class="overlayTopRight">
         <i class="fs-1 mdi mdi-delete-outline" title="Delete Vault" @click="deleteVault(vault.id)"></i>
       </div>
-      <!-- <div class="dropdown-menu text-center fs-1">
-        <div class="d-flex justify-content-evenly">
-          <i class="mdi mdi-delete-outline fs-1 text-danger" title="delete vault" @click="deleteVault(vault.id)"></i>
-        </div>
-      </div> -->
       <img class="vaultImg" :src="vault.img" :alt="vault.name">
       <p class="overlay mb-0 text-center">{{ vault.name }} <br> by {{ vault.creator.name }}</p>
     </div>
@@ -120,6 +115,21 @@ export default {
   width: 50%;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+@media (max-width: 768px) {
+  .overlay {
+    position: absolute;
+    bottom: 0;
+    color: whitesmoke;
+    font-size: 50px;
+    font-family: 'Times New Roman', Times, serif;
+    text-shadow: 2px 2px 4px black;
+    width: 50%;
+    height: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
 }
 
 .overlayTopRight {

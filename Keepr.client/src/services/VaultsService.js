@@ -24,7 +24,6 @@ class VaultsService {
   }
 
   async createVault(vaultData, profileId){
-    debugger
     const res = await api.post('api/vaults', vaultData)
     Pop.toast("Created Vault!", 'success')
     AppState.vaults.push(res.data)

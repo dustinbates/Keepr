@@ -4,11 +4,12 @@
       class="fs-5 p-0 m-0 mdi mdi-delete-outline bg-danger rounded-pill overlayTopRight" title="Delete Keep"
       @click="deleteKeep(keep.id)"></i>
     <img @click="setActiveKeep(keep)" data-bs-toggle="modal" data-bs-target="#activeKeep"
-      class="keepImg img-fluid rounded" title="View Keep" :src="keep.img" :alt="keep.name">
+      class="keepImg img-fluid rounded" title="View Keep" :src="keep.img" :alt="keep.name"
+      @error="brokenLink(keep, 'keepImg')">
     <p class="overlay">{{ keep.name }}</p>
     <router-link :to="{ name: 'Profile', params: { profileId: keep.creator.id } }">
       <img class="creatorImg overlayBottomRight" :title="keep.creator.name" :src="keep.creator.picture"
-        :alt="keep.creator.name">
+        :alt="keep.creator.name" @error="brokenLink(keep, 'profileImg')">
     </router-link>
   </div>
 </template>
@@ -44,6 +45,13 @@ export default {
         } catch (error) {
           logger.error(error)
           Pop.error(error.message)
+        }
+      },
+      brokenLink(keep, problem) {
+        if (problem == "keepImg") {
+          keep.img = 'https://i.natgeofe.com/n/548467d8-c5f1-4551-9f58-6817a8d2c45e/NationalGeographic_2572187_square.jpg'
+        } else if (problem == "profileImg") {
+          keep.creator.picture = 'https://images.unsplash.com/photo-1611915387288-fd8d2f5f928b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8MXx8fGVufDB8fHx8&w=1000&q=80'
         }
       }
     }
