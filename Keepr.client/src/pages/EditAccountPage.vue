@@ -1,7 +1,7 @@
 <template>
   <div class="mt-3 text-center">
     <h1>Wanting to make a change, {{ account.name }}?</h1>
-    <img class="coverImg" :src="account.coverImg" :alt="account.name"> <br>
+    <img class="coverImg rounded" :src="account.coverImg" :alt="account.name"> <br>
     <img class="profilePic" :src="account.picture" :alt="account.name" />
   </div>
   <div class="container-fluid">

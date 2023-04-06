@@ -43,6 +43,7 @@ export default {
   setup() {
     return {
       account: computed(() => AppState.account),
+      profile: computed(() => AppState.profile),
       appState: computed(() => AppState)
     }
   },

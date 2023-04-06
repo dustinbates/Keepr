@@ -2,9 +2,9 @@
   <div class="container-fluid">
     <div class="row justify-content-center">
       <div class="col-12 text-center">
-        <img class="profileHeader" :src="profile.coverImg" alt="">
+        <img class="profileHeader" :src="profile.coverImg" alt="" @error="brokenLink(profile, 'coverImg')">
         <br>
-        <img class="profilePic" :src="profile.picture" alt="">
+        <img class="profilePic" :src="profile.picture" alt="" @error="brokenLink(profile, 'picture')">
       </div>
       <div class="col-12 stats text-center">
         <h1 class="m-0 p-0">{{ profile.name }}</h1>
@@ -91,6 +91,13 @@ export default {
       profile: computed(() => AppState.profile),
       keeps: computed(() => AppState.profileKeeps),
       vaults: computed(() => AppState.profileVaults),
+      brokenLink(profile, problem) {
+        if (problem == "picture") {
+          profile.picture = 'https://i.natgeofe.com/n/548467d8-c5f1-4551-9f58-6817a8d2c45e/NationalGeographic_2572187_square.jpg'
+        } else if (problem == "coverImg") {
+          profile.coverImg = 'https://images.unsplash.com/photo-1611915387288-fd8d2f5f928b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8MXx8fGVufDB8fHx8&w=1000&q=80'
+        }
+      }
     }
   }
 }

@@ -4,7 +4,7 @@
       class="fs-5 p-0 m-0 mdi mdi-delete-outline bg-danger rounded-pill overlayTopRight" title="Delete Keep"
       @click="deleteKeep(keep.id)"></i>
     <img @click="setActiveKeep(keep)" data-bs-toggle="modal" data-bs-target="#activeKeep"
-      class="keepImg img-fluid rounded" :src="keep.img" :alt="keep.name">
+      class="keepImg img-fluid rounded" title="View Keep" :src="keep.img" :alt="keep.name">
     <p class="overlay">{{ keep.name }}</p>
     <router-link :to="{ name: 'Profile', params: { profileId: keep.creator.id } }">
       <img class="creatorImg overlayBottomRight" :title="keep.creator.name" :src="keep.creator.picture"

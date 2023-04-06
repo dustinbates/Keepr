@@ -1,7 +1,7 @@
 <template>
   <div class="vaultCard rounded">
     <router-link :to="{ name: 'Vault', params: { vaultId: vault.id } }">
-      <img class="vaultImg img-fluid rounded" :src="vault.img" :alt="vault.name">
+      <img class="vaultImg img-fluid rounded" title="View Vault" :src="vault.img" :alt="vault.name">
     </router-link>
     <p class="overlay">{{ vault.name }}</p>
   </div>
@@ -30,7 +30,7 @@ export default {
 
 .vaultImg {
   height: 20vh;
-  min-width: 20vw;
+  width: 100%;
   object-fit: cover;
   box-shadow: 0px 6px 5px rgba(0, 0, 0, 0.478);
 }

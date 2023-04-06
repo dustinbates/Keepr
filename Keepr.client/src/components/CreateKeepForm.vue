@@ -33,20 +33,25 @@
 
 
 <script>
-import { ref } from 'vue';
+import { ref, computed } from 'vue';
+import { useRoute } from 'vue-router';
+import { AppState } from '../AppState';
 import { keepsService } from '../services/KeepsService';
 import { logger } from '../utils/Logger';
 import Pop from '../utils/Pop';
 
 export default {
   setup() {
-    const editable = ref({})
+    const editable = ref({});
+    const route = useRoute();
     return {
       editable,
       async createKeep() {
         try {
+          let userId
+          route.params.profileId ? userId = route.params.profileId : userId = AppState.account.id
           const keepData = editable.value
-          await keepsService.createKeep(keepData)
+          await keepsService.createKeep(keepData, userId)
           editable.value = {}
         } catch (error) {
           logger.error(error)

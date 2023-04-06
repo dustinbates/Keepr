@@ -39,20 +39,22 @@
 
 <script>
 import { ref } from 'vue';
-import { router } from '../router';
+import { useRoute } from 'vue-router';
 import { logger } from '../utils/Logger';
 import Pop from '../utils/Pop';
 import { vaultsService } from '../services/VaultsService.js'
 
 export default {
   setup() {
-    const editable = ref({})
+    const editable = ref({});
+    const route = useRoute();
     return {
       editable,
       async createVault() {
         try {
+          const profileId = route.params.profileId
           const vaultData = editable.value
-          const vault = await vaultsService.createVault(vaultData)
+          await vaultsService.createVault(vaultData, profileId)
           editable.value = {}
         } catch (error) {
           logger.error(error)

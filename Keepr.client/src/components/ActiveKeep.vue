@@ -24,7 +24,8 @@
             <div class="row align-items-center">
               <div class="col-6">
                 <div v-if="activeKeep?.vaultKeepId && activeVault.creatorId == account.id">
-                  <button class="btn btn-outline-secondary" @click="deleteVaultKeep(activeKeep?.vaultKeepId)">
+                  <button class="btn btn-outline-secondary" @click="deleteVaultKeep(activeKeep?.vaultKeepId)"
+                    data-bs-dismiss="modal">
                     Remove <i class="mdi mdi-cancel"></i>
                   </button>
                 </div>

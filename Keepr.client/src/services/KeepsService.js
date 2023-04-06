@@ -1,5 +1,6 @@
 import { AppState } from "../AppState"
 import { logger } from "../utils/Logger"
+import Pop from "../utils/Pop"
 import { api } from "./AxiosService"
 
 class KeepsService {
@@ -25,16 +26,23 @@ class KeepsService {
     AppState.activeKeep = keep
   }
 
-  async createKeep(keepData){
+  async createKeep(keepData, userId){
     const res = await api.post('api/keeps', keepData)
+    Pop.toast("Created Keep!", 'success')
     AppState.keeps.push(res.data)
-    AppState.profileKeeps.push(res.data)
+    if(res.data.creatorId == userId){
+      AppState.profileKeeps.push(res.data)
+    }
+    
   }
 
   async deleteKeep(keepId){
     const res = await api.delete(`api/keeps/${keepId}`)
+    Pop.toast("Deleted Keep!", 'success')
     let deleteIndex = AppState.keeps.findIndex(k => k.id == keepId)
+    let profileIndex = AppState.profileKeeps.findIndex(pk => pk.id == keepId)
     AppState.keeps.splice(deleteIndex, 1)
+    AppState.profileKeeps.splice(profileIndex, 1)
   }
 
 

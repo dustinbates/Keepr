@@ -105,7 +105,7 @@ export default {
 
 .vaultImg {
   height: 40vh;
-  width: 50%;
+  width: 75%;
   object-fit: cover;
   border-radius: 30px;
 }
@@ -126,9 +126,10 @@ export default {
   position: absolute;
   top: 0;
   right: 0;
+  text-align: center;
   color: white;
   text-shadow: 1px 1px 2px black;
-  width: 30%;
+  width: 35%;
 }
 
 .bricks {

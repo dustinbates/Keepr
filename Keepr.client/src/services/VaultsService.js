@@ -22,11 +22,16 @@ class VaultsService {
     logger.log('[Got VaultKeeps]', res.data)
     AppState.vaultKeeps = res.data
   }
-  async createVault(vaultData){
+
+  async createVault(vaultData, profileId){
+    debugger
     const res = await api.post('api/vaults', vaultData)
     Pop.toast("Created Vault!", 'success')
     AppState.vaults.push(res.data)
     AppState.myVaults.push(res.data)
+    if(res.data.creatorId == profileId){
+      AppState.profileVaults.push(res.data)
+    }
   }
 
   async deleteVault(vaultId){
