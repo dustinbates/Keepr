@@ -35,7 +35,7 @@
 
 <script>
 import { AppState } from '../AppState';
-import { computed, watchEffect } from 'vue';
+import { computed, watchEffect, onMounted } from 'vue';
 import { logger } from '../utils/Logger';
 import Pop from '../utils/Pop';
 import { vaultsService } from '../services/VaultsService';
@@ -66,7 +66,9 @@ export default {
         Pop.error(error.message)
       }
     }
-
+    onMounted(() => {
+      getVaultKeeps();
+    })
     watchEffect(() => {
       if (route.params.vaultId) {
         getVaultById();

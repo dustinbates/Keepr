@@ -62,6 +62,7 @@ export default {
 .coverImg {
   height: 40vh;
   width: 65%;
+  object-fit: cover;
   transform: translateY(40px);
 }
 
@@ -69,6 +70,7 @@ export default {
   max-width: 150px;
   height: 150px;
   border-radius: 50%;
+  object-fit: cover;
   transform: translateY(-40px);
 }
 

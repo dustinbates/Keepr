@@ -53,6 +53,8 @@ export default {
     const router = useRouter();
     onMounted(() => {
       getProfileById();
+      getKeeps();
+      getVaults();
     })
     watchEffect(() => {
       getKeeps();

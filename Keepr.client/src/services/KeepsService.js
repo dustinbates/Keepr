@@ -28,6 +28,7 @@ class KeepsService {
   async createKeep(keepData){
     const res = await api.post('api/keeps', keepData)
     AppState.keeps.push(res.data)
+    AppState.profileKeeps.push(res.data)
   }
 
   async deleteKeep(keepId){

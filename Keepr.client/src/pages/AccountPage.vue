@@ -110,6 +110,7 @@ export default {
   height: 150px;
   width: 150px;
   padding: 0;
+  object-fit: cover;
   border-radius: 50%;
   transform: translateY(-40px);
 }
@@ -146,7 +147,7 @@ export default {
 
 .vaultImg {
   height: 20vh;
-  min-width: 20vw;
+  width: 100%;
   object-fit: cover;
   box-shadow: 0px 6px 5px rgba(0, 0, 0, 0.478);
 }
@@ -172,9 +173,9 @@ export default {
   margin-right: .5em;
   margin-bottom: .5em;
   color: whitesmoke;
-  text-align: end;
+  text-align: center;
   text-shadow: 1px 1px 2px rgb(0, 0, 0);
-  width: 15%;
+  width: 20%;
   overflow: hidden;
   text-overflow: ellipsis;
 }

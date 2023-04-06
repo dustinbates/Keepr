@@ -60,6 +60,12 @@ header {
   box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.424);
 }
 
+@media (max-width: 768px) {
+  .logo {
+    display: none;
+  }
+}
+
 .home {
   background-color: #E9D8D6;
   border-radius: 15px;
