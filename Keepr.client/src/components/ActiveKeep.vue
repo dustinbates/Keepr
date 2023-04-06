@@ -84,11 +84,12 @@ export default {
       },
       async createVaultKeep(id) {
         try {
+          const keep = this.activeKeep
           const keepId = this.activeKeep.id
           const vaultId = id
           logger.log(keepId, vaultId)
           const vaultKeepData = { keepId: keepId, vaultId: vaultId }
-          await vaultKeepsService.createVaultKeep(vaultKeepData)
+          await vaultKeepsService.createVaultKeep(vaultKeepData, keep)
         } catch (error) {
           logger.error(error)
           Pop.error(error.message)

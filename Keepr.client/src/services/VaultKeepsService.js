@@ -4,8 +4,9 @@ import Pop from "../utils/Pop"
 import { api } from "./AxiosService"
 
 class VaultKeepsService {
-  async createVaultKeep(vaultKeepData){
+  async createVaultKeep(vaultKeepData, keep){
     const res = await api.post('api/vaultkeeps', vaultKeepData)
+    keep.kept ++
     Pop.toast("Kept this Keep!", 'success')
     AppState.vaultKeeps.push(res.data)
   }
