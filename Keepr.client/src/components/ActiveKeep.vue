@@ -129,7 +129,7 @@ img {
 }
 
 .modal-content {
-  height: 80vh;
+  height: auto;
   overflow-y: auto;
 }
 </style>
