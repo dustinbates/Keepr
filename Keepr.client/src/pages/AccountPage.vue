@@ -22,6 +22,9 @@
       <h1>Vaults</h1>
       <div v-for="v in myVaults" class="col-6 col-md-3 mb-4">
         <div class="vaultCard rounded">
+          <div v-if="v.isPrivate == true">
+            <i class="mdi mdi-lock-outline bg-none overlayBottomRight fs-3" title="Private Vault"></i>
+          </div>
           <router-link :to="{ name: 'Vault', params: { vaultId: v.id } }">
             <img class="vaultImg img-fluid rounded" :src="v.img" :alt="v.name">
           </router-link>
@@ -99,6 +102,10 @@ export default {
   transform: translateY(40px);
 }
 
+.nope {
+  font-family: fantasy;
+}
+
 .profilePic {
   height: 150px;
   width: 150px;
@@ -154,6 +161,20 @@ export default {
   color: rgb(240, 234, 244);
   text-shadow: 1px 1px 2px rgb(0, 0, 0);
   width: 50%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.overlayBottomRight {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  margin-right: .5em;
+  margin-bottom: .5em;
+  color: whitesmoke;
+  text-align: end;
+  text-shadow: 1px 1px 2px rgb(0, 0, 0);
+  width: 15%;
   overflow: hidden;
   text-overflow: ellipsis;
 }

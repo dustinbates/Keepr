@@ -4,9 +4,6 @@
       <img class="vaultImg img-fluid rounded" :src="vault.img" :alt="vault.name">
     </router-link>
     <p class="overlay">{{ vault.name }}</p>
-    <div v-if="vault.isPrivate">
-      <i class="mdi mdi-lock-outline bg-dark"></i>
-    </div>
   </div>
 </template>
 
