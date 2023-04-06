@@ -1,5 +1,5 @@
 <template>
-  <div class="keepCard bg-white rounded">
+  <div class="keepCard bg-white rounded selectable">
     <img @click="setActiveKeep(vaultKeep)" data-bs-toggle="modal" data-bs-target="#activeKeep"
       class="keepImg img-fluid rounded" :src="vaultKeep.img" :alt="vaultKeep.name">
     <p class="overlay">{{ vaultKeep.name }}</p>

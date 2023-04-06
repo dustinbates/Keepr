@@ -28,6 +28,9 @@ CREATE TABLE keep(
 
 DROP TABLE keep;
 
+ALTER TABLE keep
+ADD COLUMN kept INT NOT NULL DEFAULT 0;
+
 INSERT INTO keep
 (name, description, img, creatorId)
 VALUES

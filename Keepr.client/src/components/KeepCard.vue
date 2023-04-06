@@ -1,12 +1,14 @@
 <template>
-  <div class="keepCard bg-white rounded">
+  <div class="keepCard bg-white rounded selectable">
     <i v-if="account.id == keep.creatorId"
-      class="fs-5 p-0 m-0 mdi mdi-delete-outline bg-danger rounded-pill overlayTopRight" @click="deleteKeep(keep.id)"></i>
+      class="fs-5 p-0 m-0 mdi mdi-delete-outline bg-danger rounded-pill overlayTopRight" title="Delete Keep"
+      @click="deleteKeep(keep.id)"></i>
     <img @click="setActiveKeep(keep)" data-bs-toggle="modal" data-bs-target="#activeKeep"
       class="keepImg img-fluid rounded" :src="keep.img" :alt="keep.name">
     <p class="overlay">{{ keep.name }}</p>
     <router-link :to="{ name: 'Profile', params: { profileId: keep.creator.id } }">
-      <img class="creatorImg overlayBottomRight" :src="keep.creator.picture" :alt="keep.creator.name">
+      <img class="creatorImg overlayBottomRight" :title="keep.creator.name" :src="keep.creator.picture"
+        :alt="keep.creator.name">
     </router-link>
   </div>
 </template>

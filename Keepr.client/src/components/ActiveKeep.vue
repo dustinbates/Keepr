@@ -3,15 +3,15 @@
     <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-xl" role="document">
       <div class="modal-content">
         <div class="row">
-          <div class="col-6">
+          <div class="col-12 col-md-6">
             <img :src="activeKeep?.img" :alt="activeKeep?.name">
           </div>
-          <div class="col-6 p-5 d-flex flex-column justify-content-around">
+          <div class="col-12 col-md-6 px-5 py-3 d-flex flex-column justify-content-evenly">
             <div class="row">
               <div class="col-12">
                 <p class="fs-2 m-0 p-0 text-center">
                   <i class="mdi mdi-eye-outline" title="View count"></i> {{ activeKeep?.views }}
-                  <i class="mdi mdi-alpha-k-box-outline" title="Kept count"></i> {{ activeKeep?.kept }}
+                  <i class="ms-5 mdi mdi-alpha-k-box-outline" title="Kept count"></i> {{ activeKeep?.kept }}
                 </p>
               </div>
             </div>
@@ -42,8 +42,11 @@
                 </div>
               </div>
               <div class="col-6">
-                <div class="d-flex align-items-center justify-content-evenly">
-                  <img class="creatorImg" :src="activeKeep?.creator.picture" :alt="activeKeep?.creator.name">
+                <div v-if="activeKeep" class="d-flex align-items-center justify-content-evenly">
+                  <router-link :to="{ name: 'Profile', params: { profileId: activeKeep?.creator.id } }">
+                    <img class="creatorImg" :src="activeKeep?.creator.picture" :alt="activeKeep?.creator.name"
+                      data-bs-dismiss="modal">
+                  </router-link>
                   <p class="fs-4 m-0 p-0">{{ activeKeep?.creator.name }}</p>
                 </div>
               </div>
@@ -109,7 +112,7 @@ export default {
 
 <style lang="scss" scoped>
 img {
-  height: 50vh;
+  height: 100%;
   width: 100%;
   object-fit: cover;
 }

@@ -36,6 +36,19 @@ namespace Keepr.Repositories
       return rows;
     }
 
+    // TODO create a solo function that increases kepts --> this will look like an update
+    internal int KeptCount(int id)
+    {
+      string sql = @"
+      UPDATE keep
+      SET
+      kept = kept + 1
+      WHERE id = @id;
+      ";
+      int rows = _db.Execute(sql, new {id});
+      return rows;
+    }
+
     internal List<Keep> GetAllKeeps()
     {
       string sql = @"
@@ -61,7 +74,7 @@ namespace Keepr.Repositories
       accounts.*
       FROM keep
       JOIN accounts ON keep.creatorId = accounts.id
-      WHERE keep.id = @id
+      WHERE keep.id = @id;
       ";
       Keep keep = _db.Query<Keep, Profile, Keep>(sql, (keep, profile) =>
       {

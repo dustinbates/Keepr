@@ -3,11 +3,22 @@
     <div class="row">
       <div class="col-12 text-end">
         <router-link :to="{ name: 'Edit Account' }">
-          <i class="mdi mdi-pencil fs-3"></i>
+          <i class="mdi mdi-pencil fs-3 " title="Edit Account"></i>
         </router-link>
       </div>
+      <div class="row justify-content-center">
+        <div class="col-12 text-center">
+          <img class="profileHeader" :src="account.coverImg" alt="">
+          <br>
+          <img class="profilePic" :src="account.picture" alt="">
+        </div>
+        <div class="col-12 stats text-center">
+          <h1 class="m-0 p-0">{{ account.name }}</h1>
+          <p class="m-0 p-0 fs-2">{{ myVaults.length }} Vaults | {{ keeps.length }} Keeps</p>
+        </div>
+      </div>
     </div>
-    <div class="row m-md-5">
+    <div class="row mx-md-5">
       <h1>Vaults</h1>
       <div v-for="v in myVaults" class="col-6 col-md-3 mb-4">
         <div class="vaultCard rounded">
@@ -80,8 +91,24 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-img {
-  max-width: 100px;
+.profileHeader {
+  height: 40vh;
+  width: 90%;
+  object-fit: cover;
+  border-radius: 30px;
+  transform: translateY(40px);
+}
+
+.profilePic {
+  height: 150px;
+  width: 150px;
+  padding: 0;
+  border-radius: 50%;
+  transform: translateY(-40px);
+}
+
+.stats {
+  transform: translateY(-40px);
 }
 
 .bricks {

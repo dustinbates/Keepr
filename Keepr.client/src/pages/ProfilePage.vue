@@ -6,8 +6,9 @@
         <br>
         <img class="profilePic" :src="profile.picture" alt="">
       </div>
-      <div class="col-12 text-center">
-        <p class="stats m-0 p-0 fs-2">{{ vaults.length }} Vaults | {{ keeps.length }} Keeps</p>
+      <div class="col-12 stats text-center">
+        <h1 class="m-0 p-0">{{ profile.name }}</h1>
+        <p class="m-0 p-0 fs-2">{{ vaults.length }} Vaults | {{ keeps.length }} Keeps</p>
       </div>
     </div>
     <div class="row px-md-5 ms-md-3">
